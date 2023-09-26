@@ -60,7 +60,8 @@ class TodoController extends Controller
      */
     public function edit(Todo $todo)
     {
-        //
+        $todo = $this->todoService->edit($todo);
+        return view ('edit', compact('todo'));
     }
 
     /**
@@ -68,7 +69,13 @@ class TodoController extends Controller
      */
     public function update(Request $request, Todo $todo)
     {
-        //
+        $update = $this->todoService->update($request, $todo);
+
+        if ($update) {
+            return redirect()->route('todo.index')->with('success', 'Todo updated successfully!');
+        } else {
+            return back()->with('error', 'Todo could not be updated!');
+        }
     }
 
     /**

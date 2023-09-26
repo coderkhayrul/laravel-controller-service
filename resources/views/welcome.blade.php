@@ -69,7 +69,7 @@
                                     <th>{{ $todo->title }}</th>
                                     <td>{{ $todo->description }}</td>
                                     <td>
-                                        <a href="#" class="btn btn-sm btn-primary">Edit</a>
+                                        <a href="{{ route('todo.edit', $todo) }}" class="btn btn-sm btn-primary">Edit</a>
                                         <button data_id="{{ $todo->id }}"
                                             class="delete-btn btn btn-sm btn-danger">Delete</button>
                                     </td>
