@@ -15,8 +15,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::get('create', [TodoController::class, 'store'])->name('todo.store');
+// Route::get('/', [TodoController::class, 'index'])->name('todo.index');
+// Route::post('/', [TodoController::class, 'store'])->name('todo.store');
+// Route::put('/', [TodoController::class, 'update'])->name('todo.update');
+// Route::delete('/', [TodoController::class, 'destroy'])->name('todo.destroy');
+
+
+Route::resource('/todo', TodoController::class);

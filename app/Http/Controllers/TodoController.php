@@ -20,7 +20,8 @@ class TodoController extends Controller
      */
     public function index()
     {
-        //
+        $todos = $this->todoService->index();
+        return view('welcome', compact('todos'));
     }
 
     /**
@@ -36,17 +37,13 @@ class TodoController extends Controller
      */
     public function store(Request $request)
     {
-        $info = [
-            'title' => 'Todo New',
-            'description' => 'Todo Description New',
-        ];
 
-        $store = $this->todoService->create($info);
+        $store = $this->todoService->create($request);
 
         if ($store) {
-            return "Todo created successfully!";
+            return back()->with('success', 'Todo created successfully!');
         } else {
-            return "Something went wrong!";
+            return back()->with('error', 'Todo could not be created!');
         }
     }
 
@@ -79,6 +76,7 @@ class TodoController extends Controller
      */
     public function destroy(Todo $todo)
     {
-        //
+        $this->todoService->delete($todo);
+        return response()->json(['success' => 'Todo deleted successfully!']);
     }
 }
